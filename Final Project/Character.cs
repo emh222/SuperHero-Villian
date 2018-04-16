@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Final_Project
 {
-    class Character : ICharacter
+    public class Character : ICharacter
     {
-        private int health, damageMax, attackBonus;
+        public int health { get; set; }
+        public int damageMax { get; set; }
+        public int attackBonus { get; set; }
+        public string name { get; }
 
-        public Character()
+        public Character(string _name, int _health, int _damageMax)
         {
-            health = 200;
+            name = _name;
+            health = _health;
+            damageMax = _damageMax;
+            attackBonus = 0;
         }
 
         public void attack()

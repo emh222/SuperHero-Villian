@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Final_Project
 {
-    class Dice
+    public class Dice
     {
         private int sides;
+        Random d = new Random();
 
         public Dice()
         {
             sides = 20;
         }
 
-        public void roll()
+        public void Roll()
         {
-            Random d = new Random();
             d.Next(0, sides);
         }
     }//end of class
