@@ -11,6 +11,8 @@ namespace Final_Project
         Character hero, monster;
         Dice battleDice;
 
+        public string winner { get; set; }
+
         public Battle(Character _hero, Character _monster, Dice _battleDice)
         {
             hero = _hero;
@@ -30,7 +32,7 @@ namespace Final_Project
                 roundNumber++;
             }
 
-            Console.ReadLine();
+            DetermineWinner();
         }
 
         public void DisplayBattleStats(int roundNumber)
@@ -39,6 +41,16 @@ namespace Final_Project
             Console.Write($"{hero.name} - Health: {hero.health} - Damage Maximum: {hero.damageMax} - Attack Bonus: True\n");
             Console.Write($"{monster.name} - Health: {monster.health} - Damage Maximum: {monster.damageMax} - Attack Bonus: True\n");
             Console.WriteLine();
+        }
+
+        public void DetermineWinner()
+        {
+            if (hero.health <= 0 && monster.health <= 0)
+                winner = "The battle is a tie!";
+            else if (hero.health <= 0 && monster.health > 0)
+                winner = monster.name + " is the winner!";
+            else
+                winner = hero.name + " is the winner!";
         }
     }
 }

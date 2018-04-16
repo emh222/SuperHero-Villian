@@ -12,6 +12,7 @@ namespace Final_Project
         public int damageMax { get; set; }
         public int attackBonus { get; set; }
         public string name { get; }
+        public bool stillAlive { get; set; }
 
         public Character(string _name, int _health, int _damageMax)
         {
@@ -19,6 +20,7 @@ namespace Final_Project
             health = _health;
             damageMax = _damageMax;
             attackBonus = 0;
+            stillAlive = true;
         }
 
         public void attack()

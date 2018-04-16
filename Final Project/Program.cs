@@ -15,8 +15,13 @@ namespace Final_Project
             Dice battleDice = new Dice();
             Battle cageMatch = new Battle(hero, monster, battleDice);
             cageMatch.DoBattle();
-
-
+            DisplayWinner(cageMatch);
         }//end of main
+
+        static void DisplayWinner(Battle battleName)
+        {
+            Console.WriteLine(battleName.winner);
+            Console.ReadLine();
+        }
     }//end of class
 }//end of namespace
