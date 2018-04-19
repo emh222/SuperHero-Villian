@@ -13,6 +13,7 @@ namespace Final_Project
         public int attackBonus { get; set; }
         public string name { get; }
         public bool stillAlive { get; set; }
+        public int CurrentRoundDamage { get; set; }
 
         public Character(string _name, int _health, int _damageMax)
         {
@@ -23,14 +24,15 @@ namespace Final_Project
             stillAlive = true;
         }
 
-        public void attack()
+        public int Attack(Dice battleDice)
         {
-            throw new NotImplementedException();
+            int damage = battleDice.Roll();
+            return damage;
         }
 
-        public void defend(int damage)
+        public void Defend(int damage)
         {
-            throw new NotImplementedException();
+            health -= damage;
         }
     }//end of class
 }//end of namespace

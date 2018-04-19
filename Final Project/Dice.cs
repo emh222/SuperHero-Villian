@@ -11,14 +11,15 @@ namespace Final_Project
         private int sides;
         Random d = new Random();
 
-        public Dice()
+        public Dice(int damageMax)
         {
-            sides = 20;
+            sides = damageMax;
         }
 
-        public void Roll()
+        public int Roll()
         {
-            d.Next(0, sides);
+            int damage = d.Next(0, sides);
+            return damage;
         }
     }//end of class
 }//end of namespace

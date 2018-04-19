@@ -12,7 +12,7 @@ namespace Final_Project
         {
             Character hero = new Character("Spiderman", 100, 25);
             Character monster = new Character("Dr. Octopus", 100, 25);
-            Dice battleDice = new Dice();
+            Dice battleDice = new Dice(hero.damageMax);
             Battle cageMatch = new Battle(hero, monster, battleDice);
             cageMatch.DoBattle();
             DisplayWinner(cageMatch);

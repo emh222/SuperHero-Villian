@@ -26,11 +26,21 @@ namespace Final_Project
 
             while (hero.health > 0 && monster.health > 0)
             {
-                hero.health -= 20;
-                monster.health -= 25;
+                monster.CurrentRoundDamage = monster.Attack(battleDice);
+                hero.Defend(monster.CurrentRoundDamage);
+                hero.CurrentRoundDamage = hero.Attack(battleDice);
+                monster.Defend(hero.CurrentRoundDamage);
                 DisplayBattleStats(roundNumber);
                 roundNumber++;
             }
+
+            //while (hero.health > 0 && monster.health > 0)
+            //{
+            //    hero.health -= 20;
+            //    monster.health -= 25;
+            //    DisplayBattleStats(roundNumber);
+            //    roundNumber++;
+            //}
 
             DetermineWinner();
         }
@@ -38,6 +48,8 @@ namespace Final_Project
         public void DisplayBattleStats(int roundNumber)
         {
             Console.WriteLine($"Round #{roundNumber}");
+            Console.WriteLine($"{monster.name} rolls a {monster.CurrentRoundDamage}");
+            Console.WriteLine($"{hero.name} rolls a {hero.CurrentRoundDamage}");
             Console.Write($"{hero.name} - Health: {hero.health} - Damage Maximum: {hero.damageMax} - Attack Bonus: True\n");
             Console.Write($"{monster.name} - Health: {monster.health} - Damage Maximum: {monster.damageMax} - Attack Bonus: True\n");
             Console.WriteLine();
