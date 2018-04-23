@@ -22,6 +22,10 @@ namespace Final_Project
 
         public void DoBattle()
         {
+            monster.attackBonus = monster.Attack(battleDice);
+            hero.attackBonus = hero.Attack(battleDice);
+            DisplayBonusValues(monster.attackBonus, hero.attackBonus);
+
             int roundNumber = 1;
 
             while (hero.health > 0 && monster.health > 0)
@@ -43,6 +47,14 @@ namespace Final_Project
             //}
 
             DetermineWinner();
+        }
+
+        public void DisplayBonusValues(int monsterBonus, int heroBonus)
+        {
+            Console.WriteLine("Bonus Roll");
+            Console.WriteLine($"Monster bonus attack = {monsterBonus}");
+            Console.WriteLine($"Hero bonus attack = {heroBonus}");
+            Console.WriteLine();
         }
 
         public void DisplayBattleStats(int roundNumber)
