@@ -10,7 +10,7 @@ namespace Final_Project
 {
     public interface ICharacter
     {
-        int Attack(Dice battleDice);
+        void Attack(Dice battleDice);
         void Defend(int damage);
     }//end of interface
 }//end of namespace

@@ -22,30 +22,10 @@ namespace Final_Project
 
         public void DoBattle()
         {
-            monster.attackBonus = monster.Attack(battleDice);
-            hero.attackBonus = hero.Attack(battleDice);
+            monster.attackBonus = battleDice.Roll();
+            hero.attackBonus = battleDice.Roll();
             DisplayBonusValues(monster.attackBonus, hero.attackBonus);
-
-            int roundNumber = 1;
-
-            while (hero.health > 0 && monster.health > 0)
-            {
-                monster.CurrentRoundDamage = monster.Attack(battleDice);
-                hero.Defend(monster.CurrentRoundDamage);
-                hero.CurrentRoundDamage = hero.Attack(battleDice);
-                monster.Defend(hero.CurrentRoundDamage);
-                DisplayBattleStats(roundNumber);
-                roundNumber++;
-            }
-
-            //while (hero.health > 0 && monster.health > 0)
-            //{
-            //    hero.health -= 20;
-            //    monster.health -= 25;
-            //    DisplayBattleStats(roundNumber);
-            //    roundNumber++;
-            //}
-
+            BattleLoop();
             DetermineWinner();
         }
 
@@ -57,13 +37,28 @@ namespace Final_Project
             Console.WriteLine();
         }
 
+        public void BattleLoop()
+        {
+            int roundNumber = 1;
+
+            while (hero.health > 0 && monster.health > 0)
+            {
+                monster.Attack(battleDice);
+                hero.Defend(monster.CurrentRoundDamage);
+                hero.Attack(battleDice);
+                monster.Defend(hero.CurrentRoundDamage);
+                DisplayBattleStats(roundNumber);
+                roundNumber++;
+            }
+        }
+
         public void DisplayBattleStats(int roundNumber)
         {
             Console.WriteLine($"Round #{roundNumber}");
-            Console.WriteLine($"{monster.name} rolls a {monster.CurrentRoundDamage}");
-            Console.WriteLine($"{hero.name} rolls a {hero.CurrentRoundDamage}");
-            Console.Write($"{hero.name} - Health: {hero.health} - Damage Maximum: {hero.damageMax} - Attack Bonus: True\n");
-            Console.Write($"{monster.name} - Health: {monster.health} - Damage Maximum: {monster.damageMax} - Attack Bonus: True\n");
+            Console.WriteLine($"{monster.name} rolls a {monster.CurrentRoll}");
+            Console.WriteLine($"{hero.name} rolls a {hero.CurrentRoll}");
+            Console.Write($"{hero.name} | Health: {hero.PreviousRoundHealth} - {monster.CurrentRoundDamage} = {hero.health} | Damage Maximum: {hero.damageMax} | Attack Bonus: {hero.UseBonus}\n");
+            Console.Write($"{monster.name} | Health: {monster.PreviousRoundHealth} - {hero.CurrentRoundDamage} = {monster.health} | Damage Maximum: {monster.damageMax} | Attack Bonus: {monster.UseBonus}\n");
             Console.WriteLine();
         }
 
