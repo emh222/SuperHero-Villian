@@ -18,13 +18,23 @@ namespace Final_Project
         public int PreviousRoundHealth { get; set; }
         public bool UseBonus { get; set; }
 
-        public Character(string _name, int _health, int _damageMax, bool _useBonus)
+        public Character(string characterType)
         {
-            name = _name;
-            health = _health;
-            damageMax = _damageMax;
+            name = characterType;
+            health = 100;
+            damageMax = 25;
             attackBonus = 0;
-            UseBonus = _useBonus;
+            UseBonus = true;
+            stillAlive = true;
+        }
+
+        public Character(string[] characterSpecifications)
+        {
+            name = characterSpecifications[0];
+            health = int.Parse(characterSpecifications[1]);
+            damageMax = int.Parse(characterSpecifications[2]);
+            attackBonus = 0;
+            UseBonus = true;
             stillAlive = true;
         }
 
@@ -35,7 +45,10 @@ namespace Final_Project
             CurrentRoundDamage = CurrentRoll;
 
             if (UseBonus)
+            {
                 CurrentRoundDamage += attackBonus;
+                UseBonus = false;
+            }
         }
 
         public void Defend(int damage)

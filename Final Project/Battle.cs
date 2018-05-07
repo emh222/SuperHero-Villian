@@ -13,10 +13,10 @@ namespace Final_Project
 
         public string winner { get; set; }
 
-        public Battle(Character _hero, Character _monster, Dice _battleDice)
+        public Battle(Character[] characters, Dice _battleDice)
         {
-            hero = _hero;
-            monster = _monster;
+            hero = characters[0];
+            monster = characters[1];
             battleDice = _battleDice;
         }
 
