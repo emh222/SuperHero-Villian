@@ -18,7 +18,7 @@ namespace Final_Project
 
         public int Roll()
         {
-            int damage = d.Next(0, sides);
+            int damage = d.Next(1, sides + 1);
             return damage;
         }
     }//end of class

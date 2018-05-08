@@ -24,8 +24,34 @@ namespace Final_Project
             Console.WriteLine("Enter 1 to play with default characters.");
             Console.WriteLine("Enter 2 to create custom characters.");
             Console.WriteLine();
-            string userSelection = GetUserInput("Enter your selection");
+            string userSelection = GetStringInput("Enter your selection");
             return userSelection;
+        }
+
+        static string GetStringInput(string inputDescription)
+        {
+            Console.Write(inputDescription + ": ");
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        static int GetIntInput(string inputDescription)
+        {
+            bool repeat = true;
+            int userInput;
+
+            do
+            {
+                Console.Write(inputDescription + ": ");
+                if (!int.TryParse(Console.ReadLine(), out userInput))
+                    Console.Write("Value must be an integer. ");
+                else if (userInput < 0)
+                    Console.Write("Value must be a positive integer. ");
+                else
+                    repeat = false;
+            } while (repeat);
+
+            return userInput;
         }
 
         //public int ValidateInput(string userEntry)
@@ -56,7 +82,7 @@ namespace Final_Project
 
         static Character[] CustomCharacters()
         {
-            string[] characterSpecifications = GetCharacterSpecs("hero");
+            object[] characterSpecifications = GetCharacterSpecs("hero");
             Character hero = new Character(characterSpecifications);
             characterSpecifications = GetCharacterSpecs("monster");
             Character monster = new Character(characterSpecifications);
@@ -64,12 +90,12 @@ namespace Final_Project
             return charactersArray;
         }
 
-        static string[] GetCharacterSpecs(string characterDescription)
+        static object[] GetCharacterSpecs(string characterDescription)
         {
-            string[] characterSpecifications = new string[3];
-            characterSpecifications[0] = GetUserInput($"Enter {characterDescription}'s name");
-            characterSpecifications[1] = GetUserInput($"Enter {characterDescription}'s health");
-            characterSpecifications[2] = GetUserInput($"Enter {characterDescription}'s damage maximum");
+            object[] characterSpecifications = new object[3];
+            characterSpecifications[0] = GetStringInput($"Enter {characterDescription}'s name");
+            characterSpecifications[1] = GetIntInput($"Enter {characterDescription}'s health");
+            characterSpecifications[2] = GetIntInput($"Enter {characterDescription}'s damage maximum");
             return characterSpecifications;
         }
 
@@ -79,13 +105,6 @@ namespace Final_Project
             charactersArray[0] = hero;
             charactersArray[1] = monster;
             return charactersArray;
-        }
-
-        static string GetUserInput(string inputDescription)
-        {
-            Console.Write(inputDescription + ": ");
-            string userInput = Console.ReadLine();
-            return userInput;
         }
 
         //static void DisplayWinner(Battle battleName) 

@@ -28,11 +28,11 @@ namespace Final_Project
             stillAlive = true;
         }
 
-        public Character(string[] characterSpecifications)
+        public Character(object[] characterSpecifications)
         {
-            name = characterSpecifications[0];
-            health = int.Parse(characterSpecifications[1]);
-            damageMax = int.Parse(characterSpecifications[2]);
+            name = (string)characterSpecifications[0];
+            health = (int)characterSpecifications[1];
+            damageMax = (int)characterSpecifications[2];
             attackBonus = 0;
             UseBonus = true;
             stillAlive = true;
@@ -47,7 +47,6 @@ namespace Final_Project
             if (UseBonus)
             {
                 CurrentRoundDamage += attackBonus;
-                UseBonus = false;
             }
         }
 

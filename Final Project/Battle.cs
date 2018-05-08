@@ -44,13 +44,24 @@ namespace Final_Project
 
             while (hero.health > 0 && monster.health > 0)
             {
-                monster.Attack(battleDice);
-                hero.Defend(monster.CurrentRoundDamage);
-                hero.Attack(battleDice);
-                monster.Defend(hero.CurrentRoundDamage);
+                //monster.Attack(battleDice);
+                //hero.Defend(monster.CurrentRoundDamage);
+                //hero.Attack(battleDice);
+                //monster.Defend(hero.CurrentRoundDamage);
+
+                OffenseAndDefense();
                 DisplayBattleStats(roundNumber);
+                RemoveBonus();
                 roundNumber++;
             }
+        }
+
+        public void OffenseAndDefense()
+        {
+            monster.Attack(battleDice);
+            hero.Defend(monster.CurrentRoundDamage);
+            hero.Attack(battleDice);
+            monster.Defend(hero.CurrentRoundDamage);
         }
 
         public void DisplayBattleStats(int roundNumber)
@@ -61,6 +72,14 @@ namespace Final_Project
             Console.Write($"{hero.name} | Health: {hero.PreviousRoundHealth} - {monster.CurrentRoundDamage} = {hero.health} | Damage Maximum: {hero.damageMax} | Attack Bonus: {hero.UseBonus}\n");
             Console.Write($"{monster.name} | Health: {monster.PreviousRoundHealth} - {hero.CurrentRoundDamage} = {monster.health} | Damage Maximum: {monster.damageMax} | Attack Bonus: {monster.UseBonus}\n");
             Console.WriteLine();
+        }
+
+        public void RemoveBonus()
+        {
+            if (hero.UseBonus == true)
+                hero.UseBonus = false;
+            if (monster.UseBonus == true)
+                monster.UseBonus = false;
         }
 
         public void DetermineWinner()
