@@ -27,6 +27,7 @@ namespace Final_Project
             DisplayBonusValues(monster.attackBonus, hero.attackBonus);
             BattleLoop();
             DetermineWinner();
+            DisplayWinner();
         }
 
         public void DisplayBonusValues(int monsterBonus, int heroBonus)
@@ -70,6 +71,15 @@ namespace Final_Project
                 winner = monster.name + " is the winner!";
             else
                 winner = hero.name + " is the winner!";
+        }
+
+        public void DisplayWinner()
+        {
+            Console.WriteLine(winner);
+            Console.WriteLine();
+            //Console.Write("Press Enter to battle again.");
+            //Console.ReadLine();
+            //Main();
         }
     }
 }

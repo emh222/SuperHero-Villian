@@ -8,14 +8,14 @@ namespace Final_Project
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             string userSelection = CharacterCreationPrompt();
             Character[] characters = CreateCharacters(userSelection);
             Dice battleDice = new Dice(characters[0].damageMax);
             Battle cageMatch = new Battle(characters, battleDice);
             cageMatch.DoBattle();
-            DisplayWinner(cageMatch);
+            ReplayPrompt();
         }//end of main
 
         static string CharacterCreationPrompt()
@@ -27,6 +27,13 @@ namespace Final_Project
             string userSelection = GetUserInput("Enter your selection");
             return userSelection;
         }
+
+        //public int ValidateInput(string userEntry)
+        //{
+        //    int validInput;
+
+        //    return validInput;
+        //}
 
         static Character[] CreateCharacters(string userSelection)
         {
@@ -81,13 +88,30 @@ namespace Final_Project
             return userInput;
         }
 
-        static void DisplayWinner(Battle battleName) 
+        //static void DisplayWinner(Battle battleName) 
+        //{
+        //    Console.WriteLine(battleName.winner);
+        //    Console.WriteLine();
+        //    //Console.Write("Press Enter to battle again.");
+        //    //Console.ReadLine();
+        //    //Main();
+        //}
+
+        static void ReplayPrompt()
         {
-            Console.WriteLine(battleName.winner);
-            Console.WriteLine();
-            Console.Write("Press Enter to battle again.");
-            Console.ReadLine();
-            CharacterCreationPrompt();
+            string userChoice;
+
+            do
+            {
+                Console.Write("Do you wish to battle again? Enter Y or N: ");
+                userChoice = Console.ReadLine().ToUpper();
+                if (userChoice == "Y")
+                    Main();
+                else if (userChoice == "N")
+                    Environment.Exit(0);
+
+            } while (userChoice != "Y" || userChoice != "N");
         }
+
     }//end of class
 }//end of namespace

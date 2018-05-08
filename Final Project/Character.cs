@@ -21,8 +21,8 @@ namespace Final_Project
         public Character(string characterType)
         {
             name = characterType;
-            health = 100;
-            damageMax = 25;
+            health = 30;
+            damageMax = 10;
             attackBonus = 0;
             UseBonus = true;
             stillAlive = true;
