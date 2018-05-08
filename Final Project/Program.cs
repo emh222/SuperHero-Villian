@@ -54,13 +54,6 @@ namespace Final_Project
             return userInput;
         }
 
-        //public int ValidateInput(string userEntry)
-        //{
-        //    int validInput;
-
-        //    return validInput;
-        //}
-
         static Character[] CreateCharacters(string userSelection)
         {
             Character[] charactersArray;
@@ -106,15 +99,6 @@ namespace Final_Project
             charactersArray[1] = monster;
             return charactersArray;
         }
-
-        //static void DisplayWinner(Battle battleName) 
-        //{
-        //    Console.WriteLine(battleName.winner);
-        //    Console.WriteLine();
-        //    //Console.Write("Press Enter to battle again.");
-        //    //Console.ReadLine();
-        //    //Main();
-        //}
 
         static void ReplayPrompt()
         {
