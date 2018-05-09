@@ -22,12 +22,20 @@ namespace Final_Project
 
         public void DoBattle()
         {
-            monster.attackBonus = battleDice.Roll();
-            hero.attackBonus = battleDice.Roll();
+            //monster.attackBonus = battleDice.Roll();
+            //hero.attackBonus = battleDice.Roll();
+            Console.Clear();
+            SetBonus();
             DisplayBonusValues(monster.attackBonus, hero.attackBonus);
             BattleLoop();
             DetermineWinner();
             DisplayWinner();
+        }
+
+        public void SetBonus()
+        {
+            monster.attackBonus = battleDice.Roll();
+            hero.attackBonus = battleDice.Roll();
         }
 
         public void DisplayBonusValues(int monsterBonus, int heroBonus)
@@ -44,11 +52,6 @@ namespace Final_Project
 
             while (hero.health > 0 && monster.health > 0)
             {
-                //monster.Attack(battleDice);
-                //hero.Defend(monster.CurrentRoundDamage);
-                //hero.Attack(battleDice);
-                //monster.Defend(hero.CurrentRoundDamage);
-
                 OffenseAndDefense();
                 DisplayBattleStats(roundNumber);
                 RemoveBonus();
@@ -96,9 +99,6 @@ namespace Final_Project
         {
             Console.WriteLine(winner);
             Console.WriteLine();
-            //Console.Write("Press Enter to battle again.");
-            //Console.ReadLine();
-            //Main();
         }
     }
 }

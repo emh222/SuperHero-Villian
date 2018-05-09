@@ -24,7 +24,7 @@ namespace Final_Project
             Console.WriteLine("Enter 1 to play with default characters.");
             Console.WriteLine("Enter 2 to create custom characters.");
             Console.WriteLine();
-            string userSelection = GetStringInput("Enter your selection");
+            string userSelection = GetStringInput("Enter your selection", "1", "2");
             return userSelection;
         }
 
@@ -35,21 +35,30 @@ namespace Final_Project
             return userInput;
         }
 
-        static int GetIntInput(string inputDescription)
+        static string GetStringInput(string inputDescription, string value1, string value2)
         {
-            bool repeat = true;
-            int userInput;
+            string userInput;
 
             do
             {
                 Console.Write(inputDescription + ": ");
-                if (!int.TryParse(Console.ReadLine(), out userInput))
-                    Console.Write("Value must be an integer. ");
-                else if (userInput < 0)
-                    Console.Write("Value must be a positive integer. ");
-                else
-                    repeat = false;
-            } while (repeat);
+                userInput = Console.ReadLine().ToUpper();
+            } while (userInput != value1 && userInput != value2);
+            
+            return userInput;
+        }
+
+        static int GetPositiveInt(string inputDescription)
+        {
+            int userInput;
+
+            Console.Write(inputDescription + ": ");
+
+            while (!(int.TryParse(Console.ReadLine(), out userInput) &&
+         userInput >= 0))
+            {
+                Console.Write("Value must be a positive integer. ");
+            }
 
             return userInput;
         }
@@ -85,10 +94,11 @@ namespace Final_Project
 
         static object[] GetCharacterSpecs(string characterDescription)
         {
+            Console.WriteLine();
             object[] characterSpecifications = new object[3];
             characterSpecifications[0] = GetStringInput($"Enter {characterDescription}'s name");
-            characterSpecifications[1] = GetIntInput($"Enter {characterDescription}'s health");
-            characterSpecifications[2] = GetIntInput($"Enter {characterDescription}'s damage maximum");
+            characterSpecifications[1] = GetPositiveInt($"Enter {characterDescription}'s health");
+            characterSpecifications[2] = GetPositiveInt($"Enter {characterDescription}'s damage maximum");
             return characterSpecifications;
         }
 
@@ -102,18 +112,12 @@ namespace Final_Project
 
         static void ReplayPrompt()
         {
-            string userChoice;
+            string userChoice = GetStringInput("Do you wish to battle again? Enter Y or N: ", "Y", "N");
 
-            do
-            {
-                Console.Write("Do you wish to battle again? Enter Y or N: ");
-                userChoice = Console.ReadLine().ToUpper();
-                if (userChoice == "Y")
-                    Main();
-                else if (userChoice == "N")
-                    Environment.Exit(0);
-
-            } while (userChoice != "Y" || userChoice != "N");
+            if (userChoice == "Y")
+                Main();
+            else if (userChoice == "N")
+                Environment.Exit(0);
         }
 
     }//end of class
