@@ -22,17 +22,15 @@ namespace Final_Project
 
         public void DoBattle()
         {
-            //monster.attackBonus = battleDice.Roll();
-            //hero.attackBonus = battleDice.Roll();
             Console.Clear();
-            SetBonus();
+            SetBonusValue();
             DisplayBonusValues(monster.attackBonus, hero.attackBonus);
             BattleLoop();
             DetermineWinner();
             DisplayWinner();
         }
 
-        public void SetBonus()
+        public void SetBonusValue()
         {
             monster.attackBonus = battleDice.Roll();
             hero.attackBonus = battleDice.Roll();
@@ -54,7 +52,7 @@ namespace Final_Project
             {
                 OffenseAndDefense();
                 DisplayBattleStats(roundNumber);
-                RemoveBonus();
+                RemoveBonus();  // Stops bonus application after first round. Comment this line out to use bonus in every round.
                 roundNumber++;
             }
         }
@@ -78,6 +76,7 @@ namespace Final_Project
         }
 
         public void RemoveBonus()
+        // Disables use of attack bonus when called
         {
             if (hero.UseBonus == true)
                 hero.UseBonus = false;

@@ -19,23 +19,26 @@ namespace Final_Project
         public bool UseBonus { get; set; }
 
         public Character(string characterType)
+        // Constructor for default characters
         {
             name = characterType;
             health = 30;
             damageMax = 10;
             attackBonus = 0;
-            UseBonus = true;
-            stillAlive = true;
+            UseBonus = true;    // By default, the bonus is used in the first round.
+            stillAlive = true;  // Will be updated to false when health <= 0.
         }
 
         public Character(object[] characterSpecifications)
+        // Constructor for custom characters
         {
+            // Cast operators are necessary to avoid an explicit type conversion error.
             name = (string)characterSpecifications[0];
             health = (int)characterSpecifications[1];
             damageMax = (int)characterSpecifications[2];
             attackBonus = 0;
-            UseBonus = true;
-            stillAlive = true;
+            UseBonus = true;    // By default, the bonus is used in the first round.
+            stillAlive = true;  // Will be updated to false when health <= 0.
         }
 
         public void Attack(Dice battleDice)
