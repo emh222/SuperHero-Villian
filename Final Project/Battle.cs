@@ -8,10 +8,11 @@ namespace Final_Project
 {
     public class Battle
     {
-        Character hero, monster;
-        Dice battleDice;
+        private Character hero;
+        private Character monster;
+        private Dice battleDice;
 
-        public string winner { get; set; }
+        private string winner { get; set; }
 
         public Battle(Character[] characters, Dice _battleDice)
         {
@@ -24,7 +25,7 @@ namespace Final_Project
         {
             Console.Clear();
             SetBonusValue();
-            DisplayBonusValues(monster.attackBonus, hero.attackBonus);
+            DisplayBonusValues(monster.AttackBonus, hero.AttackBonus);
             BattleLoop();
             DetermineWinner();
             DisplayWinner();
@@ -32,15 +33,15 @@ namespace Final_Project
 
         public void SetBonusValue()
         {
-            monster.attackBonus = battleDice.Roll();
-            hero.attackBonus = battleDice.Roll();
+            monster.AttackBonus = battleDice.Roll();
+            hero.AttackBonus = battleDice.Roll();
         }
 
         public void DisplayBonusValues(int monsterBonus, int heroBonus)
         {
             Console.WriteLine("Bonus Roll");
-            Console.WriteLine($"Monster bonus attack = {monsterBonus}");
-            Console.WriteLine($"Hero bonus attack = {heroBonus}");
+            Console.WriteLine($"{monster.Name} bonus attack = {monsterBonus}");
+            Console.WriteLine($"{hero.Name} bonus attack = {heroBonus}");
             Console.WriteLine();
         }
 
@@ -48,7 +49,7 @@ namespace Final_Project
         {
             int roundNumber = 1;
 
-            while (hero.health > 0 && monster.health > 0)
+            while (hero.Health > 0 && monster.Health > 0)
             {
                 OffenseAndDefense();
                 DisplayBattleStats(roundNumber);
@@ -68,10 +69,10 @@ namespace Final_Project
         public void DisplayBattleStats(int roundNumber)
         {
             Console.WriteLine($"Round #{roundNumber}");
-            Console.WriteLine($"{monster.name} rolls a {monster.CurrentRoll}");
-            Console.WriteLine($"{hero.name} rolls a {hero.CurrentRoll}");
-            Console.Write($"{hero.name} | Health: {hero.PreviousRoundHealth} - {monster.CurrentRoundDamage} = {hero.health} | Damage Maximum: {hero.damageMax} | Attack Bonus: {hero.UseBonus}\n");
-            Console.Write($"{monster.name} | Health: {monster.PreviousRoundHealth} - {hero.CurrentRoundDamage} = {monster.health} | Damage Maximum: {monster.damageMax} | Attack Bonus: {monster.UseBonus}\n");
+            Console.WriteLine($"{monster.Name} rolls a {monster.CurrentRoll}");
+            Console.WriteLine($"{hero.Name} rolls a {hero.CurrentRoll}");
+            Console.Write($"{hero.Name} | Health: {hero.PreviousRoundHealth} - {monster.CurrentRoundDamage} = {hero.Health} | Damage Maximum: {hero.DamageMax} | Attack Bonus: {hero.UseBonus}\n");
+            Console.Write($"{monster.Name} | Health: {monster.PreviousRoundHealth} - {hero.CurrentRoundDamage} = {monster.Health} | Damage Maximum: {monster.DamageMax} | Attack Bonus: {monster.UseBonus}\n");
             Console.WriteLine();
         }
 
@@ -86,12 +87,12 @@ namespace Final_Project
 
         public void DetermineWinner()
         {
-            if (hero.health <= 0 && monster.health <= 0)
+            if (hero.Health <= 0 && monster.Health <= 0)
                 winner = "The battle is a tie!";
-            else if (hero.health <= 0 && monster.health > 0)
-                winner = monster.name + " is the winner!";
+            else if (hero.Health <= 0 && monster.Health > 0)
+                winner = monster.Name + " is the winner!";
             else
-                winner = hero.name + " is the winner!";
+                winner = hero.Name + " is the winner!";
         }
 
         public void DisplayWinner()

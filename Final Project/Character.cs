@@ -8,15 +8,14 @@ namespace Final_Project
 {
     public class Character : ICharacter
     {
-        public int health { get; set; }
-        public int damageMax { get; set; }
-        public int attackBonus { get; set; }
-        public string name { get; }
-        public bool stillAlive { get; set; }
-        public int CurrentRoll { get; set; }
-        public int CurrentRoundDamage { get; set; }
-        public int PreviousRoundHealth { get; set; }
-        public bool UseBonus { get; set; }
+        private string name;
+        private int health;
+        private int damageMax;
+        private int attackBonus;
+        private int currentRoll;
+        private int currentRoundDamage;
+        private int previousRoundHealth;
+        private bool useBonus;
 
         public Character(string characterType)
         // Constructor for default characters
@@ -26,7 +25,6 @@ namespace Final_Project
             damageMax = 10;
             attackBonus = 0;
             UseBonus = true;    // By default, the bonus is used in the first round.
-            stillAlive = true;  // Will be updated to false when health <= 0.
         }
 
         public Character(object[] characterSpecifications)
@@ -38,7 +36,53 @@ namespace Final_Project
             damageMax = (int)characterSpecifications[2];
             attackBonus = 0;
             UseBonus = true;    // By default, the bonus is used in the first round.
-            stillAlive = true;  // Will be updated to false when health <= 0.
+        }
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
+
+        public int DamageMax
+        {
+            get { return damageMax; }
+            set { damageMax = value; }
+        }
+
+        public int AttackBonus
+        {
+            get { return attackBonus; }
+            set { attackBonus = value; }
+        }
+
+        public int CurrentRoundDamage
+        {
+            get { return currentRoundDamage; }
+            set { currentRoundDamage = value; }
+        }
+
+        public int CurrentRoll
+        {
+            get { return currentRoll; }
+            set { currentRoll = value; }
+        }
+
+        public int PreviousRoundHealth
+        {
+            get { return previousRoundHealth; }
+            set { previousRoundHealth = value; }
+        }
+
+        public bool UseBonus
+        {
+            get { return useBonus; }
+            set { useBonus = value; }
         }
 
         public void Attack(Dice battleDice)

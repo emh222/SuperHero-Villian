@@ -12,7 +12,7 @@ namespace Final_Project
         {
             string userSelection = CharacterCreationPrompt();
             Character[] characters = CreateCharacters(userSelection);
-            Dice battleDice = new Dice(characters[0].damageMax);
+            Dice battleDice = new Dice(characters[0].DamageMax);
             Battle cageMatch = new Battle(characters, battleDice);
             cageMatch.DoBattle();
             ReplayPrompt();
