@@ -49,21 +49,6 @@ namespace Final_Project
             return userInput;
         }
 
-        public static int GetPositiveInt(string inputDescription)
-        {
-            int userInput;
-
-            Console.Write(inputDescription);
-
-            while (!(int.TryParse(Console.ReadLine(), out userInput) &&
-         userInput >= 0))
-            {
-                Console.Write("Please enter a positive integer: ");
-            }
-
-            return userInput;
-        }
-
         public static Character[] CreateCharacters(string userSelection)
         {
             Character[] charactersArray;
@@ -102,6 +87,21 @@ namespace Final_Project
             characterSpecifications[1] = GetPositiveInt($"Enter {characterDescription}'s health: ");
             characterSpecifications[2] = GetPositiveInt($"Enter {characterDescription}'s damage maximum: ");
             return characterSpecifications;
+        }
+
+        public static int GetPositiveInt(string inputDescription)
+        {
+            int userInput;
+
+            Console.Write(inputDescription);
+
+            while (!(int.TryParse(Console.ReadLine(), out userInput) &&
+         userInput >= 0))
+            {
+                Console.Write("Please enter a positive integer: ");
+            }
+
+            return userInput;
         }
 
         public static Character[] AddCharactersToArray(Character hero, Character monster)
