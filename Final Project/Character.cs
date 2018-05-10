@@ -102,5 +102,5 @@ namespace Final_Project
             PreviousRoundHealth = health;
             health -= damage;
         }
-    }//end of class
-}//end of namespace
+    }
+}

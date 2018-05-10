@@ -121,6 +121,5 @@ namespace Final_Project
             else if (userChoice == "N")
                 Environment.Exit(0);
         }
-
-    }//end of class
-}//end of namespace
+    }
+}

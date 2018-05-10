@@ -21,5 +21,5 @@ namespace Final_Project
             int damage = d.Next(1, sides + 1);
             return damage;
         }
-    }//end of class
-}//end of namespace
+    }
+}

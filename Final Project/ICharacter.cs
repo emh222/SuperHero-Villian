@@ -12,5 +12,5 @@ namespace Final_Project
     {
         void Attack(Dice battleDice);
         void Defend(int damage);
-    }//end of interface
-}//end of namespace
+    }
+}
